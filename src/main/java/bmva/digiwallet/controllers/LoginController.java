@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -15,9 +16,9 @@ public class LoginController {
     @Autowired
     private IUserService userService;
 
-    @GetMapping("/")
+    @GetMapping({"/login","/"})
     public String iniciarSesion() {
-        return "login";
+        return "/auth/login";
     }
 
     @PostMapping("validar")

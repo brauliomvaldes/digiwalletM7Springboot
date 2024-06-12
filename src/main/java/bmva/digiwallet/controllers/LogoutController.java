@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/logout")
 public class LogoutController {
-    @GetMapping
+    @GetMapping("/logout")
     public String cerrarSesion(Model model, HttpSession session) {
         session.removeAttribute("usuario");
         session.removeAttribute("nrocuenta");
