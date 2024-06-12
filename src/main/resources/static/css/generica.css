@@ -1,0 +1,19 @@
+* {
+	margin: 0;
+	padding: 0;
+    box-sizing: border-box;
+}
+body{
+	background-image: url("../img/imagen.jpg");
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+}
+img{
+    width: 100px;
+    aspect-ratio: 16/16;
+    margin: 10px;
+}

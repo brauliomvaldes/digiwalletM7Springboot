@@ -1,0 +1,23 @@
+* {
+	margin: 0;
+	padding: 0;
+    box-sizing: border-box;
+}
+body{
+	background: rgb(0,0,3);
+background: -moz-linear-gradient(176deg, rgba(0,0,3,1) 0%, rgba(3,47,189,1) 35%, rgba(19,79,157,0.9434961484593838) 56%, rgba(0,212,255,1) 100%);
+background: -webkit-linear-gradient(176deg, rgba(0,0,3,1) 0%, rgba(3,47,189,1) 35%, rgba(19,79,157,0.9434961484593838) 56%, rgba(0,212,255,1) 100%);
+background: linear-gradient(176deg, rgba(0,0,3,1) 0%, rgba(3,47,189,1) 35%, rgba(19,79,157,0.9434961484593838) 56%, rgba(0,212,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000003",endColorstr="#00d4ff",GradientType=1);
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+}
+img{
+    width: 40px;
+    aspect-ratio: 16/16;
+    margin: 10px;
+}
+
