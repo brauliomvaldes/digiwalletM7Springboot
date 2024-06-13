@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/")
 public class LoginController {
-    @Autowired
-    private IUserService userService;
 
-    @GetMapping({"/","/login"})
+    @GetMapping(value = {"/login", "/"})
     public String iniciarSesion() {
         return "/auth/login";
     }
 
     // reemplazado por validación con spring security
+    // @Autowired
+    // private IUserService userService;
 	/*
 	 * @PostMapping("/validar") public String searchUsers(@RequestParam String
 	 * username, @RequestParam String password, Model model, HttpSession session) {

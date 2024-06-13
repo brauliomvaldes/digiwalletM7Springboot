@@ -17,6 +17,10 @@ public class SecurityConfig {
                 		// lambda para especificar más de una ruta
                 		// csrf no requiere ser desahibilitado porque es por formulario
                 		.requestMatchers("/auth/**").permitAll()
+                		.requestMatchers("/css/**").permitAll()
+                		.requestMatchers("/img/**").permitAll()
+                		.requestMatchers("/js/**").permitAll()
+                		.requestMatchers("/wallet/api/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin((form) -> form
                         .loginPage("/login").permitAll()

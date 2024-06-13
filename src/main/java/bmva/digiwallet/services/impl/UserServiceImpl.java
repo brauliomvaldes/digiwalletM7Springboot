@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.repository.query.Param;
 import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -106,9 +107,12 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 			session.setAttribute("usuario", user);  
 			return new User(user.getEmail(), user.getPassword(), permissions);
 		}
-		
 		return null;
 	}
+	
+	public UserEntity findByIdUsuario(@Param("id")String id) {
+		return userRepository.findByIdUsuario(id);
+	};
  
 }
 

@@ -30,8 +30,6 @@ public interface ITransactionRepository extends JpaRepository<Transaction, Strin
 			+ " INNER JOIN users u ON u.id = a.user_id "
 			+ " WHERE u.id = ?1 AND a.id = ?2 "
 			+ " ORDER BY t.date DESC", nativeQuery = true)
-
 	public List<Transaction> findByIdUserAndIdAccount(String id_user, String id_account);
-	
 	
 }

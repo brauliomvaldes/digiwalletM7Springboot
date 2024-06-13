@@ -6,6 +6,7 @@ import bmva.digiwallet.models.Transaction;
 import bmva.digiwallet.models.UserEntity;
 import bmva.digiwallet.services.IAccountService;
 import bmva.digiwallet.services.ITransactionService;
+import bmva.digiwallet.services.IUserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,18 +26,17 @@ public class MovimientosController {
     @Autowired
     private IAccountService accountService;
 
+    // listado por cuenta
     @GetMapping("/movimientos/{id}")
     public String movimientosPorCuenta(@PathVariable String id, Model model, HttpSession session) {
+    	System.out.println("id:"+id);
         if(session.getAttribute("usuario")!=null) {
             Account cuenta = accountService.buscarPorId(id);
             if(cuenta!=null) {
                 // cuenta existente
                 UserEntity usuario = (UserEntity)session.getAttribute("usuario");
-
                 String idUsuario = usuario.getId();
-
                 List<Transaction> movimientos = transactionService.findByIdUserAndIdAccount(idUsuario, id);
-
                 List<MovimientoDto> tfrs = transactionService.mapeoMovimientos(movimientos, id);
                 model.addAttribute("cuenta", cuenta.getNumber());
                 model.addAttribute("movimientos", tfrs);
@@ -47,5 +47,6 @@ public class MovimientosController {
             }
         }
         return "redirect:/logout";
-    }
+    }  
+	
 }
