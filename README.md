@@ -3,6 +3,7 @@
 Proyecto Web MVC, utilizando framework Springframework, incluye los proyectos springboot, data JPA, base de datos MySQL, plantilla thymeleaf, pruebas unitarias junit/moquito y login con springsecurity(*).
 
 - Versión JRE 17
+- Packaging WAR
 - Nombre base de datos: digiwalletm7
 - El archivo "application.properties" incluye datos de conexion a la base de datos (usaurio y password) y las credenciales de acceso para login springsecurity, esto es, usuario=admin, password=super
 
