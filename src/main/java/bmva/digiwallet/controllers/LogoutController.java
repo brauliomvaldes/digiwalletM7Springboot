@@ -15,7 +15,6 @@ public class LogoutController {
         session.removeAttribute("nrocuenta");
         session.removeAttribute("balance");
         ClearVarSession.clearMessages(session, model);
-        session.invalidate();
         return "/auth/login";
     }
 }

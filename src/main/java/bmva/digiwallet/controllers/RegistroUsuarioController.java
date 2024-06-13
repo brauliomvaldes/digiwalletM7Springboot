@@ -24,7 +24,6 @@ public class RegistroUsuarioController {
 
     @GetMapping("/registro")
     public String mostrarFormularioDeRegistro() {
-    	System.out.println("controlador registro usuario");
         return "/auth/registro";
     }
 

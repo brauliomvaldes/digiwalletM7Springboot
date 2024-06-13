@@ -2,14 +2,25 @@ package bmva.digiwallet.services.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import bmva.digiwallet.services.IUserService;
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import bmva.digiwallet.dto.UserDto;
@@ -19,7 +30,7 @@ import bmva.digiwallet.models.UserEntity;
 import bmva.digiwallet.repository.IUserRepository;
 
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements IUserService, UserDetailsService {
 
 	@Autowired
 	private IUserRepository userRepository;
@@ -35,7 +46,7 @@ public class UserServiceImpl implements IUserService {
 		user.setLastname(userDto.getLastname());
 		user.setIdentity(userDto.getIdentity());
 		user.setCreated(new Date());
-		user.setUsername(userDto.getEmail());
+		user.setUsername(userDto.getEmail());  // el username es el correo
 		user.setState(true);
 		user.setCredentialNoExpired(true);
 		user.setAccountNoExpired(true);
@@ -78,5 +89,30 @@ public class UserServiceImpl implements IUserService {
 	public UserEntity findByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		UserEntity user = userRepository.findByEmail(username);
+		if(user != null) {
+			List<GrantedAuthority> permissions = new ArrayList<>();
+			GrantedAuthority p = new SimpleGrantedAuthority(user.getRole());
+			permissions.add(p);
+			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			HttpSession session = attr.getRequest().getSession(true);
+			// para validación con spring security
+			session.setAttribute("usuariosession", user);  
+			// para validación en controladores al no utilizar anotación @PreAuthorize("hasRole('ROLE_USER')")
+			session.setAttribute("usuario", user);  
+			return new User(user.getEmail(), user.getPassword(), permissions);
+		}
+		
+		return null;
+	}
  
 }
+
+
+
+
+

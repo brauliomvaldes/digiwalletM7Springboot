@@ -22,19 +22,19 @@ public class LoginController {
         return "/auth/login";
     }
 
-    @PostMapping("/validar")
-    public String searchUsers(@RequestParam String email, @RequestParam String password,
-                              Model model, HttpSession session) {
-        // Aquí debes implementar la lógica para buscar usuarios por correo y contraseña
-        // Utiliza el repositorio y la anotación @Query para realizar la búsqueda
-        // Retorna la lista de usuarios encontrados
-        UserEntity usuario = userService.buscaUsuarioPorEmailYPassword(email, password);
-        if(usuario != null) {
-            // almacena el usuario logeado
-            session.setAttribute("usuario", usuario);
-            session.setAttribute("msg", null);
-            return "/wallet/inicio";
-        }
-        return "redirect:/?error";
-    }
+    // reemplazado por validación con spring security
+	/*
+	 * @PostMapping("/validar") public String searchUsers(@RequestParam String
+	 * username, @RequestParam String password, Model model, HttpSession session) {
+	 * // por requerimientos de spring security, el UserDetails debe contener
+	 * username
+	 * 
+	 * // Aquí debes implementar la lógica para buscar usuarios por correo y
+	 * contraseña // Utiliza el repositorio y la anotación @Query para realizar la
+	 * búsqueda // Retorna la lista de usuarios encontrados UserEntity usuario =
+	 * userService.buscaUsuarioPorEmailYPassword(username, password); if(usuario !=
+	 * null) { // almacena el usuario logeado session.setAttribute("usuario",
+	 * usuario); session.setAttribute("msg", null); return "/wallet/inicio"; }
+	 * return "redirect:/?error"; }
+	 */
 }

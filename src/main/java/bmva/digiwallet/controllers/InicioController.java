@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/dw")
+@RequestMapping("/wallet")
 public class InicioController {
     @GetMapping("/inicio")
     public String principal(Model model, HttpSession session) {
