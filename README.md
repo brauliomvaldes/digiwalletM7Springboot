@@ -1,6 +1,12 @@
 # digiwalletM7Springboot
 
-Proyecto Web MVC, utilizando framework Springframework, incluye los proyectos springboot, data JPA, base de datos MySQL, plantilla thymeleaf, pruebas unitarias junit/moquito y login con springsecurity(*).
+Proyecto Web MVC, utilizando framework Springframework, incluye los proyectos:
+- springboot. 
+- spring data JPA. 
+- base de datos MySQL.
+- spring security con login de usuario en base de datos.
+- motor plantilla thymeleaf
+- pruebas unitarias junit/moquito 
 
 - Versión JRE 17
 - Packaging WAR
@@ -33,8 +39,3 @@ Algunas funcionalidades del proyecto son:
 
 * Incluye test unitario para validación de rut y login. 
 
-(*)El proyecto incluye la capa de seguridad spring security pero no esta implementada completamente ya que estimé que el proyecto no cumple con los requerimientos mínimos para su real implementación, esto es, la creación de roles y sus respectivas "autorizaciones". 
-
-Siendo así, que respecto al ingreso (login) a la App pasando por la capa de seguridad de spring security, se requiere utilizar las credenciales en memoria que estan configuradas para estos efectos, luego de esto, es requesito crear y almacenar en base de datos, sus propias credenciales para operar con la App (doble autenticación "cuneta") y al hacer "logout" la capa de spring security "tediosamente" vuelve a presentarse.
-
-Espero implementar spring security en la versión módulo 7.
