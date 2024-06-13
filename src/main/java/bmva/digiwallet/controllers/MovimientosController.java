@@ -12,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/wallet")
 public class MovimientosController {
     @Autowired
     private ITransactionService transactionService;
@@ -39,9 +41,9 @@ public class MovimientosController {
                 model.addAttribute("cuenta", cuenta.getNumber());
                 model.addAttribute("movimientos", tfrs);
                 model.addAttribute("nombreusuario", usuario.getFirstname().toUpperCase()+" "+usuario.getLastname().toUpperCase());
-                return "movimientos";
+                return "/wallet/movimientos";
             }else {
-                return "redirect:cuentas";
+                return "redirect:/wallet/cuentas";
             }
         }
         return "redirect:/logout";

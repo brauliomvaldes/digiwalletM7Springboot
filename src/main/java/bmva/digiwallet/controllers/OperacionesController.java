@@ -9,14 +9,12 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
 @Controller
+@RequestMapping("/wallet")
 public class OperacionesController {
     @Autowired
     IAccountService accountService;
@@ -70,7 +68,7 @@ public class OperacionesController {
                     session.setAttribute("msg", "negativo");
                 }
             }
-            return "redirect:/operar/"+idCuenta;
+            return "redirect:/wallet/operar/"+idCuenta;
         }
         return "redirect:/logout";
     }
@@ -102,9 +100,9 @@ public class OperacionesController {
                     if(msg.equals("negativo")) model.addAttribute("msg", "¡Error!, Debe ingresar un monto positivo");
                     if(msg.equals("error")) model.addAttribute("msg", "¡Error de Comunicación!, No fue posible realizar la operación");
                 }
-                return "operaciones";
+                return "/wallet/operaciones";
             }else {
-                return "cuentas";
+                return "/wallet/cuentas";
             }
 
         }

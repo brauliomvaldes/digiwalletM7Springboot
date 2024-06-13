@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
+@RequestMapping("/wallet")
 public class TransferenciasController {
     @Autowired
     IAccountService accountService;
@@ -101,7 +102,7 @@ public class TransferenciasController {
             }
 
             session.setAttribute("sender", null);
-            return "redirect:/transferir/" + idCuenta;
+            return "redirect:/wallet/transferir/" + idCuenta;
         }
         return "redirect:/logout";
     }
@@ -164,11 +165,11 @@ public class TransferenciasController {
                     if (msg.equals("negativo")) model.addAttribute("msgtransferencia", "¡Error!, Debe ingresar un monto positivo");
                     if (msg.equals("error")) model.addAttribute("msgtransferencia", "¡Error!, No fue posible realizar la operación, intente más tarde");
                 }
-                return "transferencias";
+                return "/wallet/transferencias";
             } else {
                 // intento de transferencia por cuenta nula no válido
                 session.setAttribute("sender", null);
-                return "cuentas";
+                return "/wallet/cuentas";
             }
 
         }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro de usuarios</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/dw/cuentas}">Mis Cuentas</a></li>
+					<li><a th:href="@{/dw/logout}">Cerrar sesión</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+		<div>
+				<h1><strong>Registro de Nuevo Contacto</strong></h1>
+		</div>
+				<div>
+			<h4>
+				<span><strong>Usuario :</strong></span>
+			</h4>
+			<h3>
+				<span th:text="${nombreusuario}"></span>
+			</h3>
+		</div>
+	<div class="container-login3">
+				<div th:if=${mensajecontactos}>
+					<div class="alert alert-info">
+						<span th:text="${mensajecontactos}"></span>
+					</div>
+				</div>
+				<form th:action="@{/dw/registrocontactos}" method="post"
+					th:object="${micontacto}">
+					<div class="form-group">
+						<label class="control-label" for="number">Número de Cuenta del Contacto
+							: </label> <input id="number" type="text" class="form-control"
+							th:field="*{number}" required autofocus="autofocus">
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="number">Alias para
+							Cuenta : </label> <input id="alias" type="text" class="form-control"
+							th:field="*{alias}" required autofocus="autofocus">
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">Crear Nuevo
+							Contacto</button>
+					</div>
+				</form>
+				<span> <a class="btn btn-primary" type="button"
+					th:href="@{/dw/contactos}">Volver a mis Contactos</a>
+				</span>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

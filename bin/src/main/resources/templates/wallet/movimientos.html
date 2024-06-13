@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transferencias</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+</head>
+<body style="background: #cccc99;">
+
+	<div class="container">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+					</button>
+
+					<ul class="nav navbar-nav">
+						<li><a th:href="@{/dw/cuentas}">Mis Cuentas</a></li>
+						<li><a th:href="@{/dw/contactos}">Mis Contactos</a></li>
+						<li><a th:href="@{/dw/logout}">Cerrar sesión</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<br>
+		<br>
+		<h3>Listado de Sus Movimientos</h3>
+		<div>
+			<h4>
+				<span><strong>Usuario :</strong></span>
+			</h4>
+			<h3>
+				<span th:text="${nombreusuario}+' Cuenta Nº '+${cuenta}"></span>
+			</h3>
+		</div>
+
+		<br>
+		<div>
+
+			<table class="table table-responsive table-striped table-bordered">
+				<thead class="table-dark">
+					<tr>
+						<th>Transferencia Nº</th>
+						<th>Tipo</th>
+						<th>Fecha</th>
+						<th>Cuenta Referida</th>
+						<th>Monto</th>
+						<th>Detalle</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${movimientos.size == 0}"><td>No hay movimientos que mostrar</td></tr>
+					<tr th:each="movimiento : ${movimientos}">
+						<td th:text="${movimiento.trf}"></td>
+						<td th:text="${movimiento.tipo}"></td>
+						<td th:text="${movimiento.fecha}"></td>
+						
+						<td th:if="${movimiento.numero != null}" th:text="${movimiento.numero}"></td>
+						<td th:if="${movimiento.numero == null}" th:text="${cuenta}"></td>
+						
+						<td th:text="${movimiento.monto}"></td>
+						<td th:text="${movimiento.detalle}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div><a class="btn btn-success" type="button" th:href="@{/dw/cuentas}">Regresar a Mis Cuentas</a></div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>

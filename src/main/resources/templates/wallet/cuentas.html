@@ -30,7 +30,7 @@
 					</button>
 
 					<ul class="nav navbar-nav">
-						<li><a th:href="@{/contactos}">Mis Contactos</a></li>
+						<li><a th:href="@{/wallet/contactos}">Mis Contactos</a></li>
 						<li><a th:href="@{/logout}">Cerrar sesión</a></li>
 					</ul>
 				</div>
@@ -49,7 +49,7 @@
 			</h3>
 		</div>
 		<span> <a class="btn btn-info" type="button"
-			th:href="@{/registrarcuentas}">Agregar Nueva Cuenta</a>
+			th:href="@{/wallet/registrarcuentas}">Agregar Nueva Cuenta</a>
 		</span> <br>
 		<table class="table table-responsive table-striped table-bordered">
 			<thead class="table-dark">
@@ -73,12 +73,12 @@
 					<td th:text="${cuenta.bank.name}">ID</td>
 					<td th:text="${cuenta.toa.name}">ID</td>
 					<td><a class="btn btn-primary" type="button"
-						th:href="@{/operar/{id}(id=${cuenta.id})}">Retirar/Depositar</a></td>
+						th:href="@{/wallet/operar/{id}(id=${cuenta.id})}">Retirar/Depositar</a></td>
 					<td><a class="btn btn-success" type="button"
-						th:href="@{/transferir/{id}(id=${cuenta.id})}">Transferir
+						th:href="@{/wallet/transferir/{id}(id=${cuenta.id})}">Transferir
 							desde aquí</a></td>
 					<td><a class="btn btn-warning" type="button"
-						th:href="@{/movimientos/{id}(id=${cuenta.id})}">ver
+						th:href="@{/wallet/movimientos/{id}(id=${cuenta.id})}">ver
 							Movimientos</a></td>
 				</tr>
 			</tbody>

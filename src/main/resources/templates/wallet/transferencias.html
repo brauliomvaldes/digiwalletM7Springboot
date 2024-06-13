@@ -16,7 +16,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="/css/style.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -32,8 +32,8 @@
 				</button>
 
 				<ul class="nav navbar-nav">
-					<li><a th:href="@{/cuentas}">Mis Cuentas</a></li>
-					<li><a th:href="@{/contactos}">Mis Contactos</a></li>
+					<li><a th:href="@{/wallet/cuentas}">Mis Cuentas</a></li>
+					<li><a th:href="@{/wallet/contactos}">Mis Contactos</a></li>
 					<li><a th:href="@{/logout}">Cerrar sesión</a></li>
 				</ul>
 			</div>
@@ -74,7 +74,7 @@
 		</div>
 		<div class='container-login'>
 
-			<form th:action="@{/transferencias}" method="post"
+			<form th:action="@{/wallet/transferencias}" method="post"
 				th:object="${procesotransferencia}">
 				<div>
 					<h4>
@@ -105,6 +105,7 @@
 					', #'+${account.number}+', '+${account.currencyy.symbol}+', '+${account.bank.name}"></option>
 						</select>
 					</h4>
+					<p style="color:red;" th:if="${suscuentas.size == 0}">(No posee cuentas adicionales para traspasos)</p>
 				</div>
 
 				<div id="cuentasterceros" style="display: none;">
@@ -115,6 +116,7 @@
 								th:text="${account.alias}+', #'+${account.number}+', '+${account.currencyy}+', '+${account.bank}"></option>
 						</select>
 					</h4>
+					<p style="color:red;" th:if="${suscontactos.size == 0}">(No posee contactos para transferir)</p>
 				</div>
 				<br>
 				<div>
@@ -139,7 +141,7 @@
 						<button type='submit' class='btn btn-success'>Realizar
 							Transferencia</button>
 					</span> <span> <a class="btn btn-primary" type="button"
-						th:href="@{/cuentas}">Volver a mis Cuentas</a>
+						th:href="@{/wallet/cuentas}">Volver a mis Cuentas</a>
 					</span>
 				</div>
 				<br>
@@ -155,6 +157,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-<script src="../js/transferencias.js"></script>
+<script src="/js/transferencias.js"></script>
 </body>
 </html>

@@ -12,16 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/")
 public class LoginController {
     @Autowired
     private IUserService userService;
 
-    @GetMapping({"/login","/"})
+    @GetMapping({"/","/login"})
     public String iniciarSesion() {
         return "/auth/login";
     }
 
-    @PostMapping("validar")
+    @PostMapping("/validar")
     public String searchUsers(@RequestParam String email, @RequestParam String password,
                               Model model, HttpSession session) {
         // Aquí debes implementar la lógica para buscar usuarios por correo y contraseña
@@ -32,7 +33,7 @@ public class LoginController {
             // almacena el usuario logeado
             session.setAttribute("usuario", usuario);
             session.setAttribute("msg", null);
-            return "redirect:/inicio";
+            return "/wallet/inicio";
         }
         return "redirect:/?error";
     }

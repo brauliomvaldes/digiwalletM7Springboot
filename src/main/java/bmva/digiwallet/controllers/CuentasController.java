@@ -14,10 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/wallet")
 public class CuentasController {
     @Autowired
     private IAccountService accountService;
@@ -36,11 +38,10 @@ public class CuentasController {
         ClearVarSession.clearMessages(session, model);
         if(session.getAttribute("usuario")!=null) {
             UserEntity usuario = (UserEntity)session.getAttribute("usuario");
-
             List<Account> cuentas = accountService.findByUser(usuario);
             model.addAttribute("cuentas", cuentas);
             model.addAttribute("nombreusuario", usuario.getFirstname().toUpperCase()+" "+usuario.getLastname().toUpperCase());
-            return "cuentas";
+            return "/wallet/cuentas";
         }
         return "redirect:/logout";
     }
@@ -61,7 +62,7 @@ public class CuentasController {
             if(msg.equals("nrocuenta")) model.addAttribute("msgcuentas", "¡Error!, El número de cuenta proporcionado esta registrado a otro usuario");
             if(msg.equals("nrocuentapropia")) model.addAttribute("msgcuentas", "¡Error!, El número de cuenta proporcionado ya esta registrado a su nombre");
         }
-        return "registrocuentas";
+        return "/wallet/registrocuentas";
     }
 
     @ModelAttribute("cuentabancaria")
@@ -72,7 +73,6 @@ public class CuentasController {
     @PostMapping("/registrarcuenta")
     public String registrarNuevaCuenta(@ModelAttribute("cuentabancaria") AccountDto cuentaDto,
                                        Model model, HttpSession session) {
-
         if(session.getAttribute("usuario")!=null) {
             UserEntity usuario = (UserEntity)session.getAttribute("usuario");
             // recupera id del usuario logeado
@@ -92,7 +92,7 @@ public class CuentasController {
                     session.setAttribute("msgcuentas", "nrocuenta");
                 }
             }
-            return "redirect:/registrarcuentas";
+            return "redirect:/wallet/registrarcuentas";
         }
         return "redirect:/logout";
     }

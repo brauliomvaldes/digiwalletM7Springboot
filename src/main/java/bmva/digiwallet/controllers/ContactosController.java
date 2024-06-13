@@ -14,10 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/wallet")
 public class ContactosController {
     @Autowired
     private IContactService contactService;
@@ -35,7 +37,7 @@ public class ContactosController {
             model.addAttribute("contactos", contactos);
             model.addAttribute("nombreusuario",
                     usuario.getFirstname().toUpperCase() + " " + usuario.getLastname().toUpperCase());
-            return "contactos";
+            return "/wallet/contactos";
         }
         return "redirect:/logout";
     }
@@ -60,7 +62,7 @@ public class ContactosController {
             UserEntity usuario = (UserEntity)session.getAttribute("usuario");
             model.addAttribute("nombreusuario",
                     usuario.getFirstname().toUpperCase() + " " + usuario.getLastname().toUpperCase());
-            return "registrocontactos";
+            return "/wallet/registrocontactos";
         }
         return "redirect:/logout";
     }
@@ -81,7 +83,7 @@ public class ContactosController {
             // recupera numero de cuenta ingresado
             String nroCuenta = contactoDto.getNumber();
             // validar que la cuenta no sea un contacto del usuario
-            if (contactService.buscarPorNroCuenta(nroCuenta) == null) {
+            if (contactService.buscarPorNroCuentaYUsuario(nroCuenta, idUsuario) == null) {
                 // validar la cuenta bancaria que este ya exista
                 Account cuentaExiste = accountService.buscarPorNroCuenta(nroCuenta);
                 if (cuentaExiste != null) {
@@ -105,7 +107,7 @@ public class ContactosController {
             } else {
                 session.setAttribute("msgcontactos", "nrocontacto");
             }
-            return "redirect:/registrocontactos";
+            return "redirect:/wallet/registrocontactos";
         }
         return "redirect:/logout";
     }

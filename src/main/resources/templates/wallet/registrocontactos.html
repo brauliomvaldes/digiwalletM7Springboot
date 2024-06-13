@@ -31,7 +31,7 @@
 						class="icon-bar"></span>
 				</button>
 				<ul class="nav navbar-nav">
-					<li><a th:href="@{/cuentas}">Mis Cuentas</a></li>
+					<li><a th:href="@{/wallet/cuentas}">Mis Cuentas</a></li>
 					<li><a th:href="@{/logout}">Cerrar sesión</a></li>
 				</ul>
 			</div>
@@ -60,7 +60,7 @@
 						<span th:text="${mensajecontactos}"></span>
 					</div>
 				</div>
-				<form th:action="@{/registrocontactos}" method="post"
+				<form th:action="@{/wallet/registrocontactos}" method="post"
 					th:object="${micontacto}">
 					<div class="form-group">
 						<label class="control-label" for="number">Número de Cuenta del Contacto
@@ -79,7 +79,7 @@
 					</div>
 				</form>
 				<span> <a class="btn btn-primary" type="button"
-					th:href="@{/contactos}">Volver a mis Contactos</a>
+					th:href="@{/wallet/contactos}">Volver a mis Contactos</a>
 				</span>
 			</div>
 		</div>

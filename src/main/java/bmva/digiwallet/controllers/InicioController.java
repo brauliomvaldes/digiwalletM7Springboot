@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/dw")
 public class InicioController {
     @GetMapping("/inicio")
     public String principal(Model model, HttpSession session) {
@@ -15,7 +16,7 @@ public class InicioController {
             UserEntity usuario = (UserEntity)session.getAttribute("usuario");
 
             model.addAttribute("nombreusuario", "¡ Hola ! "+usuario.getFirstname().toUpperCase()+" "+usuario.getLastname().toUpperCase());
-            return "index";
+            return "/wallet/inicio";
         }
         return "redirect:/logout";
     }

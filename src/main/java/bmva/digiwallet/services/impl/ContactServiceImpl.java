@@ -35,8 +35,15 @@ public class ContactServiceImpl implements IContactService {
 	}
 
 	@Override
-	public Contact buscarPorNroCuenta(String nrocuenta) {
-		return contactRepository.buscarPorNroCuenta(nrocuenta);
+	public Contact buscarPorNroCuentaYUsuario(String nrocuenta, String userId) {
+		Contact contacto = contactRepository.buscarPorNroCuenta(nrocuenta); 
+		if(contacto != null) {
+			if(userId.equals(contacto.getUser().getId())){
+				// el número de cuenta ya existe como contacto del usuario
+				return contacto;
+			}
+		}
+		return null; 
 	}
 
 }

@@ -12,5 +12,5 @@ public interface IContactService {
 	
 	public Contact crearNuevoContacto(ContactoDto contactoDto);
 	
-	public Contact buscarPorNroCuenta(String nrocuenta);
+	public Contact buscarPorNroCuentaYUsuario(String nrocuenta, String userId);
 }

@@ -16,7 +16,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 
@@ -31,8 +31,8 @@
 					</button>
 
 					<ul class="nav navbar-nav">
-						<li><a th:href="@{/cuentas}">Mis Cuentas</a></li>
-						<li><a th:href="@{/contactos}">Mis Contactos</a></li>
+						<li><a th:href="@{/wallet/cuentas}">Mis Cuentas</a></li>
+						<li><a th:href="@{/wallet/contactos}">Mis Contactos</a></li>
 						<li><a th:href="@{/logout}">Cerrar sesión</a></li>
 					</ul>
 				</div>
@@ -68,7 +68,7 @@
 					<span th:text="${balance}"></span>
 				</h2>
 			</div>
-			<form th:action="@{/operaciones}" method="post"
+			<form th:action="@{/wallet/operaciones}" method="post"
 				th:object="${procesooperacion}">
 				<div class='container-login'>
 					<h4>
@@ -103,7 +103,7 @@
 							<button type='submit' class='btn btn-success'>Procesar
 								Operación</button>
 						</span> <span> <a class="btn btn-primary" type="button"
-							th:href="@{/cuentas}">Volver a mis Cuentas</a>
+							th:href="@{/wallet/cuentas}">Volver a mis Cuentas</a>
 						</span>
 					</div>
 				<br>

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/registro")
+@RequestMapping("/auth")
 public class RegistroUsuarioController {
     @Autowired
     private IUserService userService;
@@ -22,27 +22,28 @@ public class RegistroUsuarioController {
         return new UserDto();
     }
 
-    @GetMapping
+    @GetMapping("/registro")
     public String mostrarFormularioDeRegistro() {
-        return "registro";
+    	System.out.println("controlador registro usuario");
+        return "/auth/registro";
     }
 
-    @PostMapping
+    @PostMapping("/registro")
     public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UserDto registroDTO) {
 
         if(ToolService.validarRut(registroDTO.getIdentity())) {
             UserEntity nuevousuario = userService.findByEmail(registroDTO.getEmail());
-            if (nuevousuario != null) { return "redirect:/registro?email"; }
+            if (nuevousuario != null) { return "redirect:/auth/registro?email"; }
             // no existe el email registrado
 
             UserEntity user = userService.save(registroDTO);
             if (user != null) {
-                return "redirect:/registro?exito";
+                return "redirect:/auth/registro?exito";
             }
         }else {
-            return "redirect:/registro?rut";
+            return "redirect:/auth/registro?rut";
         }
-        return "redirect:/registro?error";
+        return "redirect:/auth/registro?error";
     }
 
 }
