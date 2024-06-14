@@ -45,7 +45,7 @@ public class TransactionServiceImpl implements ITransactionService {
 		return transactionRepository.save(transaction);
 	}
 	
-	public List<MovimientoDto> mapeoMovimientos(List<Transaction> transactions, String idCuenta) {
+	public List<MovimientoDto> mapeoMovimientos(List<Transaction> transactions, String idCuenta, String nroCuenta) {
 		// lista de movimiento de la misma cuenta
 		// que figura como sender o receiver
 		List<MovimientoDto> tfrs = new ArrayList<>();
@@ -89,8 +89,8 @@ public class TransactionServiceImpl implements ITransactionService {
 					trf.setNumero(t.getSender().getNumber());
 				}				
 			}
-			
-			trf.setTrf(t.getNumber());
+			trf.setCuenta(nroCuenta);  // identifica cada movimiento con su cuenta afectada 
+			trf.setTrf(t.getNumber()); // referencia de la cuenta que ocasiona el movimiento
 			trf.setFecha(t.getDate());
 			trf.setDetalle(t.getDetail());
 			tfrs.add(trf);

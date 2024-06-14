@@ -35,7 +35,7 @@ public class ApiMovimientosController {
 	public ResponseEntity<List<MovimientoDto>> movimientosPorUsuarioCuenta(@RequestParam String idUsuario, @RequestParam String idCuenta) {
         List<Transaction> movimientos = transactionService.findByIdUserAndIdAccount(idUsuario, idCuenta);
         if(movimientos != null) {
-        	List<MovimientoDto> tfrs = transactionService.mapeoMovimientos(movimientos, idCuenta);
+        	List<MovimientoDto> tfrs = transactionService.mapeoMovimientos(movimientos, idCuenta, idCuenta);
         	if(tfrs != null) {
         		return ResponseEntity.ok(tfrs);   		
         	}
@@ -48,22 +48,18 @@ public class ApiMovimientosController {
 	public ResponseEntity<List<MovimientoDto>> movimientosPorUsuario(@RequestParam String idUsuario) {
 		// todas las transferencias 
 		List<MovimientoDto> transferencias = new ArrayList<>();
-		
 		UserEntity user = userService.findByIdUsuario(idUsuario);
 		if(user != null) {
-			
 			// busca cuentas del usuario
 			List<Account> cuentas = accountService.findByUser(user);
 			cuentas.forEach(account->{
 				// extrae transferencias de la cuenta del usuario
 				List<Transaction> movimientos = transactionService.findByIdUserAndIdAccount(idUsuario, account.getId());
 				// transferencias por cuentas
-				 
-				List<MovimientoDto> listado = transactionService.mapeoMovimientos(movimientos, account.getId());				
+				List<MovimientoDto> listado = transactionService.mapeoMovimientos(movimientos, account.getId(), account.getNumber());				
 				if(listado.size() > 0) {
 					transferencias.addAll(listado);
 				}
-				 
 			});
 		}
 		return ResponseEntity.ok(transferencias);   		

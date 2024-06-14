@@ -35,23 +35,19 @@
 		</nav>
 		<br>
 		<br>
-		<h3>Listado de Sus Movimientos</h3>
+		<h3>Listado General de Movimientos</h3>
 		<div>
-			<h4>
-				<span><strong>Usuario :</strong></span>
-			</h4>
 			<h3>
-				<span th:text="${nombreusuario}+' Cuenta Nº '+${cuenta}"></span>
+				<span><strong>Usuario :</strong></span>
+				<span th:text="${nombreusuario}"></span>
 			</h3>
 		</div>
-
-		<br>
 		<div>
-
 			<table class="table table-responsive table-striped table-bordered">
 				<thead class="table-dark">
 					<tr>
-						<th>Transferencia Nº</th>
+						<th>Cuenta Nº</th>
+						<th>Transferencia</th>
 						<th>Tipo</th>
 						<th>Fecha</th>
 						<th>Cuenta Referida</th>
@@ -62,14 +58,15 @@
 				<tbody>
 					<tr th:if="${movimientos.size == 0}"><td>No hay movimientos que mostrar</td></tr>
 					<tr th:each="movimiento : ${movimientos}">
+						<td th:text="${movimiento.cuenta}"></td>
 						<td th:text="${movimiento.trf}"></td>
 						<td th:text="${movimiento.tipo}"></td>
 						<td th:text="${movimiento.fecha}"></td>
 						
 						<td th:if="${movimiento.numero != null}" th:text="${movimiento.numero}"></td>
-						<td th:if="${movimiento.numero == null}" th:text="${cuenta}"></td>
+						<td th:if="${movimiento.numero == null}" th:text="${movimiento.cuenta}"></td>
 						
-						<td class="float-right" th:text="${movimiento.monto}"></td>
+						<td th:text="${movimiento.monto}"></td>
 						<td th:text="${movimiento.detalle}"></td>
 					</tr>
 				</tbody>

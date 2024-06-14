@@ -18,6 +18,6 @@ public interface ITransactionService {
 	
 	public List<Transaction> findByIdUserAndIdAccount(String id_user, String id_account);
 	
-	public List<MovimientoDto> mapeoMovimientos(List<Transaction> transactions, String idUsuario);
+	public List<MovimientoDto> mapeoMovimientos(List<Transaction> transactions, String idUsuario, String nroCuenta);
 	
 }

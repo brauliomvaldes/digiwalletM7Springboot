@@ -14,6 +14,7 @@ import lombok.Setter;
 @Setter
 public class MovimientoDto {
 	
+	private String cuenta;
 	private String trf;
 	private Date fecha;
 	private String tipo; 
