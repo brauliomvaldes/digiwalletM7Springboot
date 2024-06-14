@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body{
-	background-image: url("../img/imagen.jpg");
+	background-image: url("/img/imagen.jpg");
     text-align: center;
     font-family: "Oswald", sans-serif;
     font-optical-sizing: auto;

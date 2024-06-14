@@ -12,7 +12,11 @@
 <!-- Optional theme 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">-->
-	<link rel="stylesheet" href="../css/generica.css" />
+	<link rel="stylesheet" href="/css/generica.css" />
+	
+<!-- biblioteca ks.js método de pago -->    
+    <script src="https://js.khipu.com/v1/kws.js"></script>
+    
 </head>
 <body>
 
@@ -40,7 +44,8 @@
 			 <h3 th:text="${nombreusuario}"></h3>
 		</div>
 		<h4>Bienvenido a DigiWallet - Billetera Digital</h4>
-		<br>
+		<br><br>
+		<div id="khipu-web-root"></div>
 	</div>
 
 
