@@ -1,6 +1,6 @@
 # digiwalletM7Springboot
 
-Proyecto Web MVC y api rest, utilizando framework Springframework, incluye los proyectos:
+Proyecto Web MVC y api rest, utilizando Springframework las siguientes dependencias:
 
 - springboot con spring security, spring data JPA, base de datos MySQL, spring security con estrategía básica con login de usuario en base de datos empleando correo y contraseña, motor plantilla thymeleaf, pruebas unitarias básicas junit/moquito 
 
@@ -27,7 +27,7 @@ Algunas funcionalidades del proyecto son:
 
 * Transferencias entre las cuentas del usuario y a sus contactos. 
 
-* Informa el valor del dolar mediante el consumo de la api https://mindicador.cl/
+* En transferencias informa indicadores económicos mediante el consumo de la api https://mindicador.cl/
 
 * Visualizar cuentas y contactos del usuario.
 
