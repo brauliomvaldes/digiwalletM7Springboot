@@ -146,7 +146,7 @@ public class TransferenciasController {
                 // el tipo de moneda
                 model.addAttribute("moneda", cuenta.getCurrencyy().getSymbol());
                 // nombre del usuario
-                model.addAttribute("nombreusuario", usuario.getFirstname() + " " + usuario.getLastname());
+                model.addAttribute("nombreusuario", usuario.getFirstname().toUpperCase() + " " + usuario.getLastname().toUpperCase());
                 // sus cuentas
                 model.addAttribute("suscuentas", listaCuentasDelUsuario);
                 // sus contactos

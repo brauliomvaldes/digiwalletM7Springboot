@@ -17,35 +17,36 @@
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/css/style.css" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<body>
+	<header>
 
-<div class="container mx-auto" style="width: 800px;">
-	<nav
-		class="navbar collapse navbar-collapse navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-				</button>
+		<div class="container mx-auto" style="width: 800px;">
+			<nav
+				class="navbar collapse navbar-collapse navbar-inverse navbar-fixed-top">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar"
+							aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+						</button>
 
-				<ul class="nav navbar-nav">
-					<li><a th:href="@{/wallet/cuentas}">Mis Cuentas</a></li>
-					<li><a th:href="@{/wallet/contactos}">Mis Contactos</a></li>
-					<li><a th:href="@{/logout}">Cerrar sesión</a></li>
-				</ul>
-			</div>
+						<ul class="nav navbar-nav">
+							<li><a th:href="@{/wallet/cuentas}">Mis Cuentas</a></li>
+							<li><a th:href="@{/wallet/contactos}">Mis Contactos</a></li>
+							<li><a th:href="@{/logout}">Cerrar sesión</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
 		</div>
-	</nav>
-	<div>
+	</header>
 
-		<br> <br>
-		<div class='container-login'>
-			<span><h1>Transferir Dinero Entre Cuentas</h1></span>
-		</div>
-		<br>
+	<br>
+	<br>
+	<div class="superior container-login">
+		<span><h1>Transferir Entre Cuentas</h1></span>
 		<div>
 			<h4>
 				<span>Usuario :</strong></span> <strong><span
@@ -60,11 +61,9 @@
 		</div>
 		<div>
 			<h3>
-				<span>Saldo Disponible para transferencia $</span> <strong><span
-					th:text="${balance}+' '+${moneda}"></span></strong>
-					<br/>
+				<span>Su Saldo Disponible $</span> <strong><span
+					th:text="${balance}+' '+${moneda}"></span></strong> <br />
 			</h3>
-					<p><h4><strong class="valordolar"></strong></h4></p>
 		</div>
 		<br>
 		<div th:if=${msgtransferencia}>
@@ -72,8 +71,9 @@
 				<span th:text="${msgtransferencia}"></span>
 			</div>
 		</div>
-		<div class='container-login'>
-
+	</div>
+	<div class="inferior">
+		<div class="izquierda container-login2">
 			<form th:action="@{/wallet/transferencias}" method="post"
 				th:object="${procesotransferencia}">
 				<div>
@@ -105,38 +105,41 @@
 					', #'+${account.number}+', '+${account.currencyy.symbol}+', '+${account.bank.name}"></option>
 						</select>
 					</h4>
-					<p style="color:red;" th:if="${suscuentas.size == 0}">(No posee cuentas adicionales para traspasos)</p>
+					<p style="color: red;" th:if="${suscuentas.size == 0}">(No
+						posee cuentas adicionales para traspasos)</p>
 				</div>
 
 				<div id="cuentasterceros" style="display: none;">
 					<h4>
 						<select name="account" th:field="*{number}" id="selectterceros">
-							<option th:each="account : ${suscontactos}"  
+							<option th:each="account : ${suscontactos}"
 								th:value="${account.number}"
 								th:text="${account.alias}+', #'+${account.number}+', '+${account.currencyy}+', '+${account.bank}"></option>
 						</select>
 					</h4>
-					<p style="color:red;" th:if="${suscontactos.size == 0}">(No posee contactos para transferir)</p>
+					<p style="color: red;" th:if="${suscontactos.size == 0}">(No
+						posee contactos para transferir)</p>
 				</div>
 				<br>
 				<div>
 					<h4>
-						<span> <label>Si aplica, Factor de Conversion Monetaria</label> <input
-							step="0.000001" min="0" style="width: 100px;" type='decimal'
-							name='factor' required th:field="*{factor}">
+						<span> <label>Si aplica, Factor de Conversion
+								Monetaria</label> <input step="0.000001" min="0" style="width: 100px;"
+							type='decimal' name='factor' required th:field="*{factor}">
 						</span>
 					</h4>
 				</div>
 
 				<div>
 					<h4>
-						<span><label>Glosa de la operación</label></span><span>
-						<input style="width: 400px;"
-							type='text' name='detail' required th:field="*{detail}"></span>
+						<span><label>Glosa de la operación</label></span><span> <input
+							style="width: 100%;" type='text' name='detail' required
+							th:field="*{detail}"></span>
 					</h4>
 				</div>
 
 				<div>
+				<br/>
 					<span>
 						<button type='submit' class='btn btn-success'>Realizar
 							Transferencia</button>
@@ -145,18 +148,17 @@
 					</span>
 				</div>
 				<br>
-
 			</form>
 		</div>
-
+		<div class="derecha container-login3">
+			<p class="indicadores"></p>
+		</div>
 	</div>
-</div>
-
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	crossorigin="anonymous"></script>
-<script src="/js/transferencias.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+	<script src="/js/transferencias.js"></script>
 </body>
 </html>

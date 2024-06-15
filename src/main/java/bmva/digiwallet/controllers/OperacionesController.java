@@ -84,7 +84,7 @@ public class OperacionesController {
             if(cuenta != null) {
                 model.addAttribute("nrocuenta", cuenta.getNumber());
                 model.addAttribute("balance", cuenta.getBalance());
-                model.addAttribute("nombreusuario", usuario.getFirstname()+" "+usuario.getLastname());
+                model.addAttribute("nombreusuario", usuario.getFirstname().toUpperCase()+" "+usuario.getLastname().toUpperCase());
                 session.setAttribute("nrocuenta", cuenta.getNumber());
                 session.setAttribute("balance", cuenta.getBalance());
                 session.setAttribute("idcuenta", id);
