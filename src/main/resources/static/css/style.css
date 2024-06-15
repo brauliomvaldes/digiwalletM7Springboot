@@ -14,7 +14,7 @@ body {
 
 .container-login {
 	width: 600px;
-	background-color: rgb(12, 17, 17);
+	background-color: rgb(12, 27, 27);
 	padding: 2px;
 	margin: auto;
 	margin-top: 2px;
@@ -58,8 +58,16 @@ body {
 	padding: 10px;
 }
 
-.izquierda, .derecha {
-	flex-basis: 48%; /* Divide en 2 partes iguales */
+.izquierda {
+	flex: 60%;  
 	background-color: #d0d0d0;
-	padding: 20px;
+	padding: 10px;
+	margin: 5px;
 }
+.derecha {
+	flex: 30%;  
+	background-color: #d0d0d0;
+	padding: 10px;
+	margin: 5px;
+}
+
