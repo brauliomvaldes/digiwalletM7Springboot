@@ -25,6 +25,7 @@ public class SecurityConfig {
                 		.requestMatchers("/css/**").permitAll()
                 		.requestMatchers("/img/**").permitAll()
                 		.requestMatchers("/js/**").permitAll()
+                		.requestMatchers("/").permitAll()
                 		.requestMatchers("/wallet/api/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin((form) -> form
