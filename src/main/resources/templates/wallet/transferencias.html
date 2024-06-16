@@ -74,89 +74,84 @@
 	</div>
 	<div class="inferior">
 		<div class="izquierda container-login2">
-			<form id= "form-transferencia" th:action="@{/wallet/transferencias}" method="post" 
-				th:object="${procesotransferencia}">
-				<div>
-					<h4>
-						<label>Monto de Dinero a Transferir</label> <input type='number'
-							th:max="${balance}" name='amount' required th:field="*{amount}">
-					</h4>
+			<form id="form-transferencia" th:action="@{/wallet/transferencias}"
+				method="post" th:object="${procesotransferencia}">
+				<div class="form-group">
+					<label class="control-label">Monto de Dinero a Transferir</label> <input
+						class="form-control input-transferencia" type='number' th:max="${balance}"
+						name='amount' required th:field="*{amount}">
 				</div>
 
-
-				<div>
-					<h4>
-						<label>Cuenta Destino - Transfiriendo a</label> <select
-							name="selectedDestino" id="destinotransferencia">
-							<option value="PROPIAS">Cuentas Propias</option>
-							<option value="CONTACTOS">Cuentas de Contactos</option>
-						</select>
-
-					</h4>
+				<div class="form-group">
+					<label class="control-label">Cuenta Destino - Transfiriendo
+						a</label> <select class="form-control" name="selectedDestino"
+						id="destinotransferencia">
+						<option class="input-transferencia" value="PROPIAS">Cuentas Propias</option>
+						<option class="input-transferencia" value="CONTACTOS">Cuentas de Contactos</option>
+					</select>
 				</div>
 
-
-				<div id="cuentaspropias">
-					<h4>
-						<select name="account" th:field="*{account}" id="selectpropias">
-							<option th:each="account : ${suscuentas}"
-								th:value="${account.id}"
-								th:text="${account.user.firstname}+' '+${account.user.lastname}+
+				<div class="form-group" id="cuentaspropias">
+					<select class="form-control" name="account" th:field="*{account}"
+						id="selectpropias">
+						<option class="input-transferencia" th:each="account : ${suscuentas}" th:value="${account.id}"
+							th:text="${account.user.firstname}+' '+${account.user.lastname}+
 					', #'+${account.number}+', '+${account.currencyy.symbol}+', '+${account.bank.name}"></option>
-						</select>
-					</h4>
+					</select>
 					<p style="color: red;" th:if="${suscuentas.size == 0}">(No
 						posee cuentas adicionales para traspasos)</p>
 				</div>
 
-				<div id="cuentasterceros" style="display: none;">
-					<h4>
-						<select name="account" th:field="*{number}" id="selectterceros">
-							<option th:each="account : ${suscontactos}"
-								th:value="${account.number}"
-								th:text="${account.alias}+', #'+${account.number}+', '+${account.currencyy}+', '+${account.bank}"></option>
-						</select>
-					</h4>
+				<div class="form-group" id="cuentasterceros" style="display: none;">
+					<select class="form-control" name="account" th:field="*{number}"
+						id="selectterceros">
+						<option class="input-transferencia" th:each="account : ${suscontactos}"
+							th:value="${account.number}"
+							th:text="${account.alias}+', #'+${account.number}+', '+${account.currencyy}+', '+${account.bank}"></option>
+					</select>
 					<p style="color: red;" th:if="${suscontactos.size == 0}">(No
 						posee contactos para transferir)</p>
 				</div>
 				<br>
-				<div>
-					<h4>
-						<span> <label>Factor de Conversion Monetaria</label> <input id="factor-conversion"
-							step="0.000001" min="0" value="1.0" style="width: 100px;"
-							type='decimal' name='factor' required th:field="*{factor}">
-						</span>
-					</h4>
+				<div class="form-group">
+					<span> <label class="control-label">Factor de
+							Conversion Monetaria</label></span>
+					<span>
+							<input class="form-control input-transferencia"
+						id="factor-conversion" step="0.000001" min="0" value="1.0"
+						type='decimal' name='factor' required
+						th:field="*{factor}">
+					</span>
 				</div>
 
-				<div>
-					<h4>
-						<span><label>Glosa de la operación</label></span><span> <input
-							style="width: 80%;" type='text' value="Trf: " name='detail'
-							required th:field="*{detail}"></span>
-					</h4>
+				<div class="form-group">
+					<span><label class="control-label">Glosa de la
+							operación</label></span><span> <input class="form-control input-transferencia"
+						type='text' value="Trf: " name='detail'
+						required th:field="*{detail}"></span>
 				</div>
 
-				<div>
-					<br /> <span>
+				<div class="form-group">
+					<span>
 						<button type='submit' class='btn btn-success'>Realizar
 							Transferencia</button>
 					</span> <span> <a class="btn btn-primary" type="button"
 						th:href="@{/wallet/cuentas}">Volver a mis Cuentas</a>
 					</span>
 				</div>
-				<br>
+				
 			</form>
 		</div>
 		<div class="derecha container-login3">
 			<span>
 				<h3>Tipos de Cambio</h3>
 				<p class="titulo-fecha"></p>
-				<table class="table table-align-center table-striped table-bordered" id="tipos-conversion">
+				<table class="table table-align-center table-striped table-bordered"
+					id="tipos-conversion">
 				</table>
 				<h3>Indicadores Económicos</h3>
-				<table class="table table-align-center table-striped table-bordered" id="indicadores">
+				<table class="table table-align-center table-striped table-bordered"
+					id="indicadores">
 				</table>
 			</span>
 		</div>

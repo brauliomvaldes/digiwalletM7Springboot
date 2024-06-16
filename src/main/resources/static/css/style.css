@@ -35,6 +35,10 @@ body {
 	box-shadow: 7px 13px 37px #000;
 }
 
+.input-transferencia{
+	text-align: center;
+}
+
 .container-login3 {
 	width: 500px;
 	background-color: rgb(199, 201, 171);
@@ -58,13 +62,14 @@ body {
 }
 
 .izquierda {
-	flex: 60%;  
+	flex: 60%;
 	background-color: #d0d0d0;
 	padding: 10px;
 	margin: 5px;
 }
+
 .derecha {
-	flex: 30%;  
+	flex: 30%;
 	background-color: #d0d0d0;
 	padding: 10px;
 	margin: 5px;
