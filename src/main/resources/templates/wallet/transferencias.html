@@ -123,8 +123,8 @@
 				<br>
 				<div>
 					<h4>
-						<span> <label>Si aplica, Factor de Conversion
-								Monetaria</label> <input step="0.000001" min="0" style="width: 100px;"
+						<span> <label>Factor de Conversion Monetaria</label> <input id="factor-conversion"
+							step="0.000001" min="0" value="1.0" style="width: 100px;"
 							type='decimal' name='factor' required th:field="*{factor}">
 						</span>
 					</h4>
@@ -133,14 +133,13 @@
 				<div>
 					<h4>
 						<span><label>Glosa de la operación</label></span><span> <input
-							style="width: 80%;" type='text' name='detail' required
-							th:field="*{detail}"></span>
+							style="width: 80%;" type='text' value="Trf: " name='detail'
+							required th:field="*{detail}"></span>
 					</h4>
 				</div>
 
 				<div>
-				<br/>
-					<span>
+					<br /> <span>
 						<button type='submit' class='btn btn-success'>Realizar
 							Transferencia</button>
 					</span> <span> <a class="btn btn-primary" type="button"
@@ -152,8 +151,13 @@
 		</div>
 		<div class="derecha container-login3">
 			<span>
-				<p class="tasas"></p>
-				<p class="indicadores"></p>
+				<h3>Tipos de Cambio</h3>
+				<p class="titulo-fecha"></p>
+				<table class="table table-align-center table-striped table-bordered" id="tipos-conversion">
+				</table>
+				<h3>Indicadores Económicos</h3>
+				<table class="table table-align-center table-striped table-bordered" id="indicadores">
+				</table>
 			</span>
 		</div>
 	</div>

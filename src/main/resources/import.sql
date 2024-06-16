@@ -8,6 +8,7 @@ insert into banks values (5, "Banco Scotiabank",1);
 
 insert into currencyy values (1, "Pesos Chilenos",1, "CLP");
 insert into currencyy values (2, "Dolar Americano",1, "USD");
+insert into currencyy values (3, "Euros",1, "EUR");
 
 insert into type_of_account values (1, "Cuenta Corriente",1);
 insert into type_of_account values (2, "Cuenta RUT",1);
