@@ -23,17 +23,17 @@ Algunas funcionalidades del proyecto son:
 
 * Crear cuentas y contactos para realizar movimientos bancarios.
 
+* Permite las transferencias entre las cuentas del usuario y a sus contactos. 
+
 * Los contactos son otros usuarios de la wallet y deben tener cuentas asociadas, esto se valida durante la creación del contacto.
 
-* Transferencias entre las cuentas del usuario y a sus contactos. 
-
-* En transferencias informa indicadores económicos mediante el consumo de la api https://mindicador.cl/
+* En transferencias ofrece opcion de seleccionar tipos de cambio o indicadores económicos mediante el consumo de la api en los sitios https://app.exchangerate-api.com/  y  https://mindicador.cl/
 
 * Visualizar cuentas y contactos del usuario.
 
-* Visualizar los movimientos efectuados por el usuario por cada cuenta, en orden descendente.
+* Visualizar los movimientos efectuados por el usuario, listado general o por cada cuenta, en orden descendente.
 
-* Api para visualizar los movimientos del usuario de todas sus cuentas y por cada cuenta, se debe proporcional el id del usuario y de la cuenta a consultas según el caso.
+* Api para visualizar los movimientos del usuario de todas sus cuentas y por cada cuenta, se debe proporcional el id del usuario y de la cuenta a consultas según el caso, id del tipo UUID.
 
 * Un movimiento de cuenta se considera abonos o retiros, transferencias entre sus propias cuentas así como las efectuadas a sus contactos.
 
