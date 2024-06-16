@@ -16,6 +16,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 	crossorigin="anonymous">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
@@ -65,7 +66,6 @@
 					th:text="${balance}+' '+${moneda}"></span></strong> <br />
 			</h3>
 		</div>
-		<br>
 		<div th:if=${msgtransferencia}>
 			<div class="alert alert-info">
 				<span th:text="${msgtransferencia}"></span>
@@ -74,7 +74,7 @@
 	</div>
 	<div class="inferior">
 		<div class="izquierda container-login2">
-			<form th:action="@{/wallet/transferencias}" method="post"
+			<form id= "form-transferencia" th:action="@{/wallet/transferencias}" method="post" 
 				th:object="${procesotransferencia}">
 				<div>
 					<h4>

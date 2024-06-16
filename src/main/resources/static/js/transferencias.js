@@ -34,7 +34,7 @@ $(document).ready(function() {
 		// selecciona el boton creado
 		const boton = document.querySelector("#btn-clp-usd");
 		// crea evento click al botón seleccionado
-		boton.addEventListener("click", function(){cambiarFactor(tasa.conversion_rate)});
+		boton.addEventListener("click", function() { cambiarFactor(tasa.conversion_rate) });
 	}).fail(function() {
 		console.log('Error al consumir la API!');
 	});
@@ -47,7 +47,7 @@ $(document).ready(function() {
 		// selecciona el boton creado
 		const boton = document.querySelector("#btn-eur-usd");
 		// crea evento click al botón seleccionado
-		boton.addEventListener("click", function(){cambiarFactor(tasa.conversion_rate)});
+		boton.addEventListener("click", function() { cambiarFactor(tasa.conversion_rate) });
 	}).fail(function() {
 		console.log('Error al consumir la API!');
 	});
@@ -60,7 +60,7 @@ $(document).ready(function() {
 		// selecciona el boton creado
 		const boton = document.querySelector("#btn-usd-eur");
 		// crea evento click al botón seleccionado
-		boton.addEventListener("click", function(){cambiarFactor(tasa.conversion_rate)});
+		boton.addEventListener("click", function() { cambiarFactor(tasa.conversion_rate) });
 	}).fail(function() {
 		console.log('Error al consumir la API!');
 	});
@@ -77,11 +77,11 @@ $(document).ready(function() {
 		// selecciona el boton creado
 		const boton4 = document.querySelector("#btn-usd-clp");
 		// crea evento click al botón seleccionado
-		boton4.addEventListener("click", function(){cambiarFactor(dailyIndicators.dolar.valor)});
+		boton4.addEventListener("click", function() { cambiarFactor(dailyIndicators.dolar.valor) });
 		// selecciona el boton creado
 		const boton5 = document.querySelector("#btn-eur-clp");
 		// crea evento click al botón seleccionado
-		boton5.addEventListener("click", function(){cambiarFactor(dailyIndicators.euro.valor)});
+		boton5.addEventListener("click", function() { cambiarFactor(dailyIndicators.euro.valor) });
 	}).fail(function() {
 		console.log('Error al consumir la API!');
 	});
@@ -90,5 +90,27 @@ $(document).ready(function() {
 	const cambiarFactor = (factor) => {
 		$('#factor-conversion').val(factor);
 	}
+
+	// intercepta transferencia, submit del formualario para pedir confirmación
+	$('#form-transferencia').on('submit', function(event) {
+		event.preventDefault(); // Detiene el envío del formulario
+		swal({
+			title: "¿ Esta seguro de transferir ?",
+			text: "Una vez realizada la transferencia, no es posible reversar los fondos",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		})
+			.then((confirmado) => {
+				if (confirmado) {
+					swal("OK! Transferencia confirmada!", {
+						icon: "success",
+					});
+					this.submit(); // Continúa con el envío del formulario si es válido					
+				} else {
+					swal("¡ Se canceló la transferencia !");
+				}
+			});
+	});
 
 });
