@@ -8,9 +8,9 @@ import bmva.digiwallet.models.UserEntity;
 
 public interface IContactService {
 
-	public List<Contact> findByUser(UserEntity user);
+	List<Contact> findByUser(UserEntity user);
 	
-	public Contact crearNuevoContacto(ContactoDto contactoDto);
+	Contact crearNuevoContacto(ContactoDto contactoDto);
 	
-	public Contact buscarPorNroCuentaYUsuario(String nrocuenta, String userId);
+	Contact buscarPorNroCuentaYUsuario(String nrocuenta, String userId);
 }

@@ -112,8 +112,8 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 	
 	public UserEntity findByIdUsuario(@Param("id")String id) {
 		return userRepository.findByIdUsuario(id);
-	};
- 
+	}
+
 }
 
 

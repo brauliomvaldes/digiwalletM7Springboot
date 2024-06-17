@@ -6,5 +6,5 @@ import bmva.digiwallet.models.Bank;
 
 public interface IBankService {
 
-	public List<Bank> findAll();
+	List<Bank> findAll();
 }

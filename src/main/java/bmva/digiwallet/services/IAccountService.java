@@ -9,17 +9,17 @@ import bmva.digiwallet.models.UserEntity;
 
 public interface IAccountService{
 	
-	public Account save(AccountDto account);
+	Account save(AccountDto account);
 	
-	public List<Account> findByUser(UserEntity user);
+	List<Account> findByUser(UserEntity user);
 
-	public Account buscarPorId(String idCuenta);
+	Account buscarPorId(String idCuenta);
 	
-	public Account buscarPorNroCuenta(String nrocuenta);
+	Account buscarPorNroCuenta(String nrocuenta);
 	
-	public Account depositar(BigDecimal nuevoBalance, String id);
+	Account depositar(BigDecimal nuevoBalance, String id);
 	
-	public Account retirar(BigDecimal montoOperacion, String id);
+	Account retirar(BigDecimal montoOperacion, String id);
 	
-	public List<Account> findByUserWithoutOneIdAccount(String userId, String idAccount);
+	List<Account> findByUserWithoutOneIdAccount(String userId, String idAccount);
 }

@@ -35,7 +35,7 @@ public class TransactionServiceImpl implements ITransactionService {
 		Integer nroTransferencia = rand.nextInt(1000000); // el nro trf será aleatorio para fines prácticos
 		transaction.setNumber(nroTransferencia.toString());
 		transaction.setAmount_sender(transactionDto.getAmount());
-		transaction.setAmount_receiver(transactionDto.getFactoramount());
+		transaction.setAmount_receiver(transactionDto.getFactorAmount());
 		transaction.setDate(new Date());
 		transaction.setDetail(transactionDto.getDetail());
 		transaction.setState(true);
@@ -76,7 +76,7 @@ public class TransactionServiceImpl implements ITransactionService {
 					// tipo giro
 					trf.setTipo("traspaso de dinero");
 					// registra el monto en valor negativo
-					trf.setMonto(BigDecimal.ZERO.subtract(t.getAmount_sender()));
+					trf.setMonto(BigDecimal.ZERO.subtract(t.getAmount_sender()));   // muestra el monto que sale de la cuenta sender
 					// toma la cuenta del receptor del dinero
 					trf.setNumero(t.getReceiver().getNumber());
 					
@@ -84,7 +84,7 @@ public class TransactionServiceImpl implements ITransactionService {
 					// entrada de dinero
 					// tipo abono
 					trf.setTipo("recepcion de dinero");
-					trf.setMonto(t.getAmount_sender());				
+					trf.setMonto(t.getAmount_receiver());  // muestra el monto que estra a la cuenta receiver
 					// toma la cuenta del emisor del dinero
 					trf.setNumero(t.getSender().getNumber());
 				}				

@@ -12,10 +12,10 @@ import bmva.digiwallet.models.UserEntity;
 @Repository
 public interface IContactRepository extends JpaRepository<Contact, Long>{
 	
-	public List<Contact> findByUser(UserEntity user);
+	List<Contact> findByUser(UserEntity user);
 	
 	
 	@Query(value = "SELECT * FROM contacts WHERE number = ?1", nativeQuery = true)
-    public Contact buscarPorNroCuenta(String nrocuenta);
+    Contact buscarPorNroCuenta(String nrocuenta);
 	
 }

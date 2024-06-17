@@ -20,8 +20,8 @@ public interface IUserRepository extends JpaRepository<UserEntity, String>{
     // contraseña ingresada utilizando bcrypt.
 	
 	@Query("SELECT u FROM UserEntity u WHERE u.email = :email")
-	public UserEntity findByEmail(@Param("email")String email);
+    UserEntity findByEmail(@Param("email") String email);
 	
 	@Query("SELECT u FROM UserEntity u WHERE u.id = :id")
-	public UserEntity findByIdUsuario(@Param("id")String id);
+    UserEntity findByIdUsuario(@Param("id") String id);
 }

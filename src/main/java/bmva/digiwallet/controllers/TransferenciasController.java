@@ -64,6 +64,14 @@ public class TransferenciasController {
                         String nroCuentaReceiverMisContactos = transactionDto.getNumber();
                         receiver = accountService.buscarPorNroCuenta(nroCuentaReceiverMisContactos);
                     }
+                    // recupera id de las monedas de las cuentas origen y  destino
+                    String idCurrencySender = accountService.buscarPorId(idCuenta).getCurrencyy().getId().toString();  // trae el id de la moneda de la cuenta sender
+                    String idCurrencyReceiver = receiver.getCurrencyy().getId().toString(); // trae el id de la moneda de la cuenta receiver
+                    // si ambas monedas son iguales
+                    if(idCurrencySender.equals(idCurrencyReceiver)){
+                        // factor de conversión debe ser igual a 1
+                        transactionDto.setFactor(BigDecimal.ONE);  // aplica regla de negocio
+                    }
                     // almacena cuenta del destinatario
                     transactionDto.setAccount(receiver);
                     // revisar factor de conversión
@@ -71,10 +79,12 @@ public class TransferenciasController {
                     // si es mayor a cero
                     if (factor.compareTo(BigDecimal.ZERO) > 0) {
                         // aplicar factor al monto de la transacción
-                        transactionDto.setFactoramount(transactionDto.getAmount().multiply(factor));
+                    	BigDecimal montoTransferirADestinatario = transactionDto.getAmount();
+                    	montoTransferirADestinatario = montoTransferirADestinatario.multiply(factor);
+                        transactionDto.setFactorAmount(montoTransferirADestinatario);
                     } else {
                         // copia el mismo monto original
-                        transactionDto.setFactoramount(transactionDto.getAmount());
+                        transactionDto.setFactorAmount(transactionDto.getAmount());
                     }
                     // recupera cuenta origen de la transferencia
                     Account sender = (Account) session.getAttribute("sender");

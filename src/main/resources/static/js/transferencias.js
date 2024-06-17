@@ -25,6 +25,39 @@ $(document).ready(function() {
 		}
 	});
 
+	// calcula total de la transferencia
+	$("#monto-transferir").change(function() {
+		recalculo();
+	});
+
+	// calcula total de la transferencia
+	$("#factor-conversion").change(function() {
+		recalculo();
+	});
+	
+	// calcula el monto real a transferir
+	const recalculo = ()=>{
+		let monto = parseInt($("#monto-transferir").val());
+		let factor = parseFloat($("#factor-conversion").val());
+		if ((!isNaN(monto) && monto > 0) && (!isNaN(factor) && factor > 0)) {
+			// limpia lista elementos creados para los destinatarios
+			limpiar();
+			let total = monto * factor;
+			$("#total-transferir").append(`<h3>$ ${total.toFixed(2)}</h3>`);
+		}else{
+			swal("Error!", "Revise los montos ingresados", "error");
+		}
+	}
+	
+
+	// limpia lista elementos creados para los destinatarios
+	const limpiar = () => {
+		const list = document.getElementById("total-transferir");
+		while (list.hasChildNodes()) {
+			list.removeChild(list.firstChild);
+		}
+	}
+
 	// tasas de conversion monetaria
 	// pesos a dolares	
 	$.getJSON(`https://v6.exchangerate-api.com/v6/${key}/pair/CLP/USD`, function(data) {
@@ -71,8 +104,9 @@ $(document).ready(function() {
 		$("#indicadores").append(
 			'<tr class="table"><td>valor U.F.  $ ' + dailyIndicators.dolar.valor + '</td><td><button class="btn btn-success" id="btn-usd-clp"><<</button></td></tr>' +
 			'<tr class="table"><td>valor U.F.  $ ' + dailyIndicators.euro.valor + '</td><td><button class="btn btn-success" id="btn-eur-clp"><<</button></td></tr>' +
-			'<tr class="table"><td>valor U.F.  $ ' + dailyIndicators.uf.valor + '</td></tr>' +
-			'<tr class="table"><td>valor UTM   $ ' + dailyIndicators.utm.valor + '</td></tr>'
+			'<tr class="table"><td> - </td><td> - </td></tr>' +
+			'<tr class="table"><td>valor U.F.  $ ' + dailyIndicators.uf.valor +  '</td><td></td> - </tr>' +
+			'<tr class="table"><td>valor UTM   $ ' + dailyIndicators.utm.valor + '</td><td></td> - </tr>'
 		);
 		// selecciona el boton creado
 		const boton4 = document.querySelector("#btn-usd-clp");
@@ -89,6 +123,7 @@ $(document).ready(function() {
 	// evalua el indicador o tasa seleccionado para acualizar el factor de conversión monetaria
 	const cambiarFactor = (factor) => {
 		$('#factor-conversion').val(factor);
+		recalculo();
 	}
 
 	// intercepta transferencia, submit del formualario para pedir confirmación
@@ -96,19 +131,16 @@ $(document).ready(function() {
 		event.preventDefault(); // Detiene el envío del formulario
 		swal({
 			title: "¿ Esta seguro de transferir ?",
-			text: "Una vez realizada la transferencia, no es posible reversar los fondos",
+			text: "Si cuenta origen y destino tiene misma moneda, el factor de conversión será igual a 1 independientemente de los factores señalados en el formulario.\nUna vez realizada la transferencia, no es posible reversar los fondos",
 			icon: "warning",
 			buttons: true,
 			dangerMode: true,
 		})
 			.then((confirmado) => {
 				if (confirmado) {
-					swal("OK! Transferencia confirmada!", {
-						icon: "success",
-					});
 					this.submit(); // Continúa con el envío del formulario si es válido					
 				} else {
-					swal("¡ Se canceló la transferencia !");
+					swal("¡ Usuario ha cancelado la transferencia !");
 				}
 			});
 	});

@@ -7,11 +7,11 @@ import bmva.digiwallet.models.UserEntity;
 
 public interface IUserService {
 
-	public UserEntity save(UserDto userDto);
+	UserEntity save(UserDto userDto);
 	
-	public UserEntity buscaUsuarioPorEmailYPassword(String email, String password);
+	UserEntity buscaUsuarioPorEmailYPassword(String email, String password);
 	
-	public UserEntity findByEmail(String email);
+	UserEntity findByEmail(String email);
 	
-	public UserEntity findByIdUsuario(@Param("id")String id);
+	UserEntity findByIdUsuario(@Param("id") String id);
 }

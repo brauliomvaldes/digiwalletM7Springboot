@@ -6,6 +6,6 @@ import bmva.digiwallet.models.Currencyy;
 
 public interface ICurrencyyService {
 
-	public List<Currencyy> findAll();
+	List<Currencyy> findAll();
 	
 }

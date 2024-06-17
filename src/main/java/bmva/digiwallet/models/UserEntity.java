@@ -50,8 +50,8 @@ public class UserEntity {
     private List<Contact> contacts = new ArrayList<Contact>();
     
 
-	public UserEntity() {};
-	
+	public UserEntity() {}
+
     // para usar con DTO
 	public UserEntity(String firstname, String lastname, String identity, String email, String username, String password,
 					  Date created, boolean state, List<Account> accounts, String role) {

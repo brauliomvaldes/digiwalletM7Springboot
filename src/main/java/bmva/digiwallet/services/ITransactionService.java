@@ -10,14 +10,14 @@ import bmva.digiwallet.models.Transaction;
 
 public interface ITransactionService {
 
-	public Transaction saveTransaction(TransactionDto transactionDto);
+	Transaction saveTransaction(TransactionDto transactionDto);
 	
-	public Transaction registrarOperacionEnTransacciones(String tipoOperacion, BigDecimal montoOperacion, Account cuenta);
+	Transaction registrarOperacionEnTransacciones(String tipoOperacion, BigDecimal montoOperacion, Account cuenta);
 	
-	public List<Transaction> findByIdSender(String id_sender);
+	List<Transaction> findByIdSender(String id_sender);
 	
-	public List<Transaction> findByIdUserAndIdAccount(String id_user, String id_account);
+	List<Transaction> findByIdUserAndIdAccount(String id_user, String id_account);
 	
-	public List<MovimientoDto> mapeoMovimientos(List<Transaction> transactions, String idUsuario, String nroCuenta);
+	List<MovimientoDto> mapeoMovimientos(List<Transaction> transactions, String idUsuario, String nroCuenta);
 	
 }

@@ -23,6 +23,6 @@ public class TypeOfAccount{
 	private boolean state;  
 	// Relación uno a muchos con la entidad Cuenta
     @OneToMany(mappedBy = "toa", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Account> accounts = new ArrayList<Account>();;
+    private List<Account> accounts = new ArrayList<Account>();
 }
 

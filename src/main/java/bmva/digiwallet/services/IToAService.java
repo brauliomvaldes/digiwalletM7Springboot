@@ -6,5 +6,5 @@ import bmva.digiwallet.models.TypeOfAccount;
 
 public interface IToAService {
 
-	public List<TypeOfAccount> findAll();
+	List<TypeOfAccount> findAll();
 }

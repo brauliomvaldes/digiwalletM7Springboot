@@ -78,23 +78,27 @@
 				method="post" th:object="${procesotransferencia}">
 				<div class="form-group">
 					<label class="control-label">Monto de Dinero a Transferir</label> <input
-						class="form-control input-transferencia" type='number' th:max="${balance}"
-						name='amount' required th:field="*{amount}">
+						id="monto-transferir" class="form-control input-transferencia"
+						type="number" value="1" th:max="${balance}" name="amount" required
+						th:field="*{amount}">
 				</div>
 
 				<div class="form-group">
-					<label class="control-label">Cuenta Destino - Transfiriendo
-						a</label> <select class="form-control" name="selectedDestino"
+					<label class="control-label">Cuenta Destino para los fondos</label>
+					<select class="form-control" name="selectedDestino"
 						id="destinotransferencia">
-						<option class="input-transferencia" value="PROPIAS">Cuentas Propias</option>
-						<option class="input-transferencia" value="CONTACTOS">Cuentas de Contactos</option>
+						<option class="input-transferencia" value="PROPIAS">Cuentas
+							Propias</option>
+						<option class="input-transferencia" value="CONTACTOS">Cuentas
+							de sus Contactos</option>
 					</select>
 				</div>
 
 				<div class="form-group" id="cuentaspropias">
 					<select class="form-control" name="account" th:field="*{account}"
 						id="selectpropias">
-						<option class="input-transferencia" th:each="account : ${suscuentas}" th:value="${account.id}"
+						<option class="input-transferencia"
+							th:each="account : ${suscuentas}" th:value="${account.id}"
 							th:text="${account.user.firstname}+' '+${account.user.lastname}+
 					', #'+${account.number}+', '+${account.currencyy.symbol}+', '+${account.bank.name}"></option>
 					</select>
@@ -105,30 +109,25 @@
 				<div class="form-group" id="cuentasterceros" style="display: none;">
 					<select class="form-control" name="account" th:field="*{number}"
 						id="selectterceros">
-						<option class="input-transferencia" th:each="account : ${suscontactos}"
-							th:value="${account.number}"
+						<option class="input-transferencia"
+							th:each="account : ${suscontactos}" th:value="${account.number}"
 							th:text="${account.alias}+', #'+${account.number}+', '+${account.currencyy}+', '+${account.bank}"></option>
 					</select>
 					<p style="color: red;" th:if="${suscontactos.size == 0}">(No
 						posee contactos para transferir)</p>
 				</div>
-				<br>
 				<div class="form-group">
-					<span> <label class="control-label">Factor de
-							Conversion Monetaria</label></span>
-					<span>
-							<input class="form-control input-transferencia"
+					<label class="control-label">Factor de Conversion Monetaria</label></span>
+					<input class="form-control input-transferencia"
 						id="factor-conversion" step="0.000001" min="0" value="1.0"
-						type='decimal' name='factor' required
-						th:field="*{factor}">
-					</span>
+						type='decimal' name='factor' required th:field="*{factor}">
+					<label class="control-label">Glosa de la operación</label> <input
+						class="form-control input-transferencia" type='text' value="Trf: "
+						name='detail' required th:field="*{detail}">
 				</div>
-
-				<div class="form-group">
-					<span><label class="control-label">Glosa de la
-							operación</label></span><span> <input class="form-control input-transferencia"
-						type='text' value="Trf: " name='detail'
-						required th:field="*{detail}"></span>
+				<div>
+					<label><h3>Total Transferencia $</h3></label> <label
+						id="total-transferir"></label>
 				</div>
 
 				<div class="form-group">
@@ -139,7 +138,7 @@
 						th:href="@{/wallet/cuentas}">Volver a mis Cuentas</a>
 					</span>
 				</div>
-				
+
 			</form>
 		</div>
 		<div class="derecha container-login3">

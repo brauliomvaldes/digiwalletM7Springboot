@@ -16,7 +16,7 @@ import lombok.ToString;
 @ToString
 public class TransactionDto {
 	private BigDecimal amount; // monto de la transferencia 
-	private BigDecimal factoramount; // monto de la transferencia aplicado factor, va al destino
+	private BigDecimal factorAmount; // monto de la transferencia aplicado factor, va al destino
 	private String detail; 
 	private Account account; // cuenta destino
 	private Account sender; // cuenta origen
