@@ -12,6 +12,7 @@
 <!-- Optional theme -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/css/style-table.css"/>
 </head>
 <body style="background: #cccc99;">
 
@@ -37,17 +38,15 @@
 		<br>
 		<h3>Listado de Sus Movimientos</h3>
 		<div>
-			<h4>
-				<span><strong>Usuario :</strong></span>
-			</h4>
 			<h3>
+				<span><strong>Usuario :</strong></span>
 				<span th:text="${nombreusuario}+' Cuenta Nº '+${cuenta}"></span>
 			</h3>
 		</div>
 
 		<br>
 		<div>
-
+			<div class="tabla-container">
 			<table class="table table-responsive table-striped table-bordered">
 				<thead class="table-dark">
 					<tr>
@@ -74,6 +73,7 @@
 					</tr>
 				</tbody>
 			</table>
+			</div>
 			<div><a class="btn btn-success" type="button" th:href="@{/wallet/cuentas}">Regresar a Mis Cuentas</a></div>
 		</div>
 	</div>
