@@ -13,7 +13,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">-->
 	<link rel="stylesheet" href="/css/generica.css" />
-	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- biblioteca ks.js método de pago -->    
     <script src="https://js.khipu.com/v1/kws.js"></script>
     
@@ -33,6 +33,7 @@
 					<ul class="nav navbar-nav">
 						<li><a th:href="@{/wallet/cuentas}">Mis Cuentas</a></li>
 						<li><a th:href="@{/wallet/contactos}">Mis Contactos</a></li>
+						<li><button id="btn-pagos"><img src="/img/pagos-en-linea.jpg" alt=""></button></li>
 						<li><a th:href="@{/logout}">Cerrar sesión</a></li>
 					</ul>
 				</div>
@@ -43,12 +44,12 @@
 			<br> <br>
 			 <h3 th:text="${nombreusuario}"></h3>
 		</div>
-		<h4>Bienvenido a DigiWallet - Billetera Digital</h4>
+		<h4>Bienvenido a DigiWallet - Tu Billetera Digital</h4>
 		<br><br>
 		<div id="khipu-web-root"></div>
 	</div>
 
-
+	<script src="/js/inicio.js"></script>
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script

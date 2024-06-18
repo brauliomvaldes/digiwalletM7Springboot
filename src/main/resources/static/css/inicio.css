@@ -18,7 +18,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000003",endCo
 }
 img{
     width: 40px;
-    aspect-ratio: 16/16;
+    aspect-ratio: 16/9;
     margin: 10px;
 }
 
