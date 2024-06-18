@@ -38,17 +38,13 @@ public class TransferenciasController {
     @PostMapping("/transferencias")
     public String transferenciasEntreCuentas(@ModelAttribute("procesotransferencia") TransactionDto transactionDto,
                                              @RequestParam("selectedDestino") String selectedDestino, Model model, HttpSession session) {
-
         session.setAttribute("msgtransferencia", null);
         if (session.getAttribute("usuario") != null && session.getAttribute("sender") != null) {
-
             BigDecimal balance = (BigDecimal) session.getAttribute("balance");
             String idCuenta = (String) session.getAttribute("idcuenta");
-            
             BigDecimal montoTransferir = transactionDto.getAmount();
-
             // el monto ingresado es positivo
-            if (montoTransferir.compareTo(BigDecimal.ONE) > 0) {
+            if (montoTransferir.compareTo(BigDecimal.ZERO) > 0) {
                 // si el saldo es mayor al monto a transaferir
                 if (balance.compareTo(montoTransferir) >= 0) {
                     // tiene saldo disponible para la transferencia

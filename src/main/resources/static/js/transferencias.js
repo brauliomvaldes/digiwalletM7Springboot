@@ -56,11 +56,13 @@ $(document).ready(function() {
     const activaIndicadores = ()=>{
             $("#tipos-indicadores").removeAttr("hidden");
             $("#tipos-indicadores").removeAttr("disabled");
+            $("#factor-conversion").removeAttr("disabled");
     }
     // oculta indicadores
     const desactivaIndicadores = ()=> {
             $('#tipos-indicadores').prop('disabled', true);
             $("#tipos-indicadores").prop("hidden", true);
+            $("#factor-conversion").prop("disabled", true);
             // factor a 1
             $("#factor-conversion").val(inicializador);
             // por modificar el factor
