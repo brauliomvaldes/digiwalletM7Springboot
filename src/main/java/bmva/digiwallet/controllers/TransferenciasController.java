@@ -1,5 +1,6 @@
 package bmva.digiwallet.controllers;
 
+import bmva.digiwallet.dto.CuentasDeLaTransferenciaDto;
 import bmva.digiwallet.dto.TransactionDto;
 import bmva.digiwallet.models.Account;
 import bmva.digiwallet.models.Contact;
@@ -41,11 +42,9 @@ public class TransferenciasController {
         session.setAttribute("msgtransferencia", null);
         if (session.getAttribute("usuario") != null && session.getAttribute("sender") != null) {
 
-            // String nrocuenta = (String)session.getAttribute("nrocuenta");
             BigDecimal balance = (BigDecimal) session.getAttribute("balance");
             String idCuenta = (String) session.getAttribute("idcuenta");
-
-            // String glosa = transactionDto.getDetail();
+            
             BigDecimal montoTransferir = transactionDto.getAmount();
 
             // el monto ingresado es positivo
@@ -147,6 +146,12 @@ public class TransferenciasController {
 
                 // reunir las cuentas de sus contactos
                 List<Contact> listaCuentasContactosDelUsuario = contactService.findByUser(usuario);
+
+                // reunir las cuentas y simbolos de sus monedas que participan en la transferencia
+                List<CuentasDeLaTransferenciaDto> cuentasdelusuario = accountService.recolectarCuentasParaLaTransferencia(listaCuentasDelUsuario, listaCuentasContactosDelUsuario);
+
+                // envia a la vista cuentas y simboles de su moneda
+                model.addAttribute("cuentasdelusuario", cuentasdelusuario);
 
                 // envia datos de la cuenta origen a la vista
                 // el número de la cuenta

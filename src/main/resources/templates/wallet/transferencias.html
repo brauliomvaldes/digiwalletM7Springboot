@@ -141,7 +141,7 @@
 
 			</form>
 		</div>
-		<div class="derecha container-login3">
+		<div class="derecha container-login3" id="tipos-indicadores">
 			<span>
 				<h3>Tipos de Cambio</h3>
 				<p class="titulo-fecha"></p>
@@ -155,6 +155,15 @@
 			</span>
 		</div>
 	</div>
+  <!--  recolecta las cuentas del usuario con sus simbolos de moneda -->
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+			var listadocuentas = /*[[${cuentasdelusuario}]]*/ '';
+			var nrocuenta = /*[[${nrocuenta}]]*/ '';
+			var moneda = /*[[${moneda}]]*/ '';
+        /*]]>*/
+	</script>
+
 	<!-- Latest compiled and minified JavaScript -->
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

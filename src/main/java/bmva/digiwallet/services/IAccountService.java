@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import bmva.digiwallet.dto.AccountDto;
+import bmva.digiwallet.dto.CuentasDeLaTransferenciaDto;
 import bmva.digiwallet.models.Account;
+import bmva.digiwallet.models.Contact;
 import bmva.digiwallet.models.UserEntity;
 
 public interface IAccountService{
@@ -22,4 +24,6 @@ public interface IAccountService{
 	Account retirar(BigDecimal montoOperacion, String id);
 	
 	List<Account> findByUserWithoutOneIdAccount(String userId, String idAccount);
+
+	List<CuentasDeLaTransferenciaDto> recolectarCuentasParaLaTransferencia(List<Account> suscuentas, List<Contact> suscontactos);
 }

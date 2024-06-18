@@ -1,9 +1,14 @@
 package bmva.digiwallet.services;
 
+import bmva.digiwallet.dto.CuentasDeLaTransferenciaDto;
+import bmva.digiwallet.models.Account;
+import bmva.digiwallet.models.Contact;
 import org.springframework.data.repository.query.Param;
 
 import bmva.digiwallet.dto.UserDto;
 import bmva.digiwallet.models.UserEntity;
+
+import java.util.List;
 
 public interface IUserService {
 
@@ -14,4 +19,5 @@ public interface IUserService {
 	UserEntity findByEmail(String email);
 	
 	UserEntity findByIdUsuario(@Param("id") String id);
+
 }

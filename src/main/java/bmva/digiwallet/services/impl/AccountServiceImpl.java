@@ -1,10 +1,13 @@
 package bmva.digiwallet.services.impl;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import bmva.digiwallet.dto.CuentasDeLaTransferenciaDto;
+import bmva.digiwallet.models.Contact;
 import bmva.digiwallet.services.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,4 +82,16 @@ public class AccountServiceImpl implements IAccountService {
 		return accountRepository.findByUserWithoutOneIdAccount(userId, idAccount);
 	}
 
+	public List<CuentasDeLaTransferenciaDto> recolectarCuentasParaLaTransferencia(List<Account> suscuentas, List<Contact> suscontactos){
+		List<CuentasDeLaTransferenciaDto> cuentasDeLaTranferencia = new ArrayList<>();
+		suscuentas.forEach(cuenta->{
+			// asigna el número de la cuenta y su moneda
+			cuentasDeLaTranferencia.add(new CuentasDeLaTransferenciaDto(cuenta.getId(), cuenta.getNumber(), cuenta.getCurrencyy().getSymbol()));
+		});
+		suscontactos.forEach(contacto->{
+			// asigna el número de la cuenta y su moneda, contacto no guarda id cuenta, se reemplaza por el número de cuenta
+			cuentasDeLaTranferencia.add(new CuentasDeLaTransferenciaDto(contacto.getNumber(), contacto.getNumber(), contacto.getCurrencyy()));
+		});
+		return cuentasDeLaTranferencia;
+	}
 }
