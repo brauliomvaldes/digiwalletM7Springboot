@@ -44,22 +44,18 @@
 		</div>
 	</header>
 	<div>
-		<div class='container-login'>
+		<div class='container-login2'>
 			<span><h2>Depositar o Retirar de Dinero</h2></span>
 		</div>
 		<div>
-			<h4>
-				<span><strong>Usuario :</strong></span>
-			</h4>
 			<h3>
+				<span><strong>Usuario :</strong></span>
 				<span th:text="${nombreusuario}"></span>
 			</h3>
 		</div>
 		<div>
-			<h4>
-				<span><strong>Operación Bancaria en Cuenta Nº</strong></span>
-			</h4>
 			<h3>
+				<span><strong>Operación Bancaria en Cuenta Nº</strong></span>
 				<span th:text="${nrocuenta}"></span>
 			</h3>
 		</div>
@@ -73,7 +69,7 @@
 		</div>
 		<form th:action="@{/wallet/operaciones}" method="post"
 			th:object="${procesooperacion}">
-			<div class='container-login'>
+			<div class='container-login2'>
 				<h4>
 					<label>Ingrese el monto de la operación</label>
 				</h4>
@@ -87,7 +83,7 @@
 					<span th:text="${msg}"></span>
 				</div>
 			</div>
-			<div class='container-login'>
+			<div class='container-login2'>
 				<h4>
 					<label class="fs-4">Debe definir el tipo de operación</label>
 				</h4>
